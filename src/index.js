@@ -27,7 +27,7 @@ class Things extends Component{
           {
             things.map( thing => {
               return (
-                <li key={ thing.id } style={{ backgroundColor: thing.color }}>
+                <li key={ thing.id } style={{ backgroundColor: thing.color, fontWeight: thing.onSale ? 'bold': 'normal' }}>
                   { thing.name }
                   <br />
                   { thing.price }
