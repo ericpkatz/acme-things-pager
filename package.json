@@ -1,0 +1,34 @@
+{
+  "name": "acme-paging",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "build:dev": "npm run build -- --watch",
+    "start:dev": "npm run build:dev & nodemon server --ignore src/ --ignore dist/",
+    "start:dev:log": "LOG=true npm run start:dev",
+    "start:dev:sync": "SYNC=true npm run start:dev",
+    "start:dev:log:sync": "SYNC=true LOG=true npm run start:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "faker": "^5.4.0",
+    "pg": "^8.5.1",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "nodemon": "^2.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "webpack": "^5.22.0",
+    "webpack-cli": "^4.5.0"
+  }
+}
