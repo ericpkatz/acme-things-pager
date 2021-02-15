@@ -21,19 +21,22 @@ class Things extends Component{
   render(){
     const { things } = this.state;
     return (
-      <ul>
-        {
-          things.map( thing => {
-            return (
-              <li key={ thing.id } style={{ backgroundColor: thing.color }}>
-                { thing.name }
-                <br />
-                { thing.price }
-              </li>
-            );
-          })
-        }
-      </ul>
+      <div>
+        <h1>{ things.length } Things</h1>
+        <ul>
+          {
+            things.map( thing => {
+              return (
+                <li key={ thing.id } style={{ backgroundColor: thing.color }}>
+                  { thing.name }
+                  <br />
+                  { thing.price }
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
     );
   }
 }

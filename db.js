@@ -20,7 +20,8 @@ const Thing = conn.define('thing', {
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
   const things = [];
-  while(things.length < 1000){
+  const count = 3000 + faker.random.number(100);
+  while(things.length <  count){
     things.push({
       name: `${faker.commerce.productName()}-${faker.random.number()}`,
       color: faker.commerce.color(),
