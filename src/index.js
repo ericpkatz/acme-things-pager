@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import store from './store';
+import { Provider, connect } from 'react-redux';
 
 const root = document.querySelector('#root');
 
@@ -72,13 +74,14 @@ class Things extends Component{
 }
 
 
-class App extends Component{
+
+class _App extends Component{
   render(){
     return (
       <HashRouter>
         <nav>
           <Link to='/'>Home</Link>
-          <Link to='/things'>Things</Link>
+          <Link to='/things'>Things ({ this.props.count })</Link>
         </nav>
         <Route path='/' exact component={ Home }/>
         <Route path='/things/:idx?' component={ Things }/>
@@ -87,6 +90,19 @@ class App extends Component{
   }
 } 
 
+const App = connect(
+  (state)=> {
+    return {
+      count: state.things.count
+    };
+  }, 
+  (dispatch)=> {
+    return {
+
+    }
+  } 
+)(_App);
 
 
-render(<App />, root);
+
+render(<Provider store={ store }><App /></Provider>, root);
