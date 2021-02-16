@@ -9,7 +9,16 @@ app.get('/', (req, res)=> res.sendFile(path.join(__dirname, 'index.html')));
 
 app.get('/api/things', async(req, res, next)=> {
   try {
-    res.send(await Thing.findAll());
+    const idx = req.query.idx ? req.query.idx*1 : 0; 
+    const [things, count] = await Promise.all([
+      Thing.findAll({
+        limit: 200,
+        offset: idx*200,
+        order: [['name']]
+      }),
+      Thing.count()
+    ]);
+    res.send({ count, things });
   }
   catch(ex){
     next(ex);
