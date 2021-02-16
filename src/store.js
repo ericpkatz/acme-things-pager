@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 
 const thingsReducer = (state={ count: 0, data: {}}, action)=> {
-  console.log(action);
   if(action.type === 'FETCH_THINGS'){
     state = {...state, data: {...state.data, [action.idx]: action.things}};
   }
@@ -26,7 +25,6 @@ const _fetchThings = ({idx, things})=> {
 };
 
 const _setCount = (count)=> {
-  console.log(count);
   return {
     type: 'SET_COUNT',
     count
