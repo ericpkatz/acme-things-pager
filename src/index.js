@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
-import store from './store';
+import store, { fetchThings } from './store';
 import { Provider, connect } from 'react-redux';
 
 const root = document.querySelector('#root');
@@ -40,7 +40,6 @@ class Things extends Component{
         selected: !this.props.match.params.idx && idx === 0 || this.props.match.params.idx*1 === idx
       };
     });
-    console.log(links);
     return (
       <div>
         <h1>{ count } Things</h1>
@@ -76,6 +75,9 @@ class Things extends Component{
 
 
 class _App extends Component{
+  componentDidMount(){
+    this.props.fetchThings()
+  }
   render(){
     return (
       <HashRouter>
@@ -98,7 +100,7 @@ const App = connect(
   }, 
   (dispatch)=> {
     return {
-
+      fetchThings: ()=> dispatch(fetchThings(0))
     }
   } 
 )(_App);
